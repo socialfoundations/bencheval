@@ -10,7 +10,7 @@ dynamic = ["readme", "dependencies"]
 requires-python = ">=3.7"
 
 [tool.setuptools.packages.find]
-include = ["bencheval"]
+include = ["bencheval*"]
 
 [tool.setuptools.dynamic]
 readme = { file = "README.md" }
