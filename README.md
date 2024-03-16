@@ -18,7 +18,7 @@ see [our paper]().
 To install the package, simply run:
 
 ```bash
-pip install bencheval@git+https://https://github.com/socialfoundations/bencheval.git
+pip install bencheval@git+https://github.com/socialfoundations/bencheval.git
 ```
 
 ## Example Usage
