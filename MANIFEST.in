@@ -1,2 +1,0 @@
-include bencheval/data/*
-include bencheval/data/*/*
