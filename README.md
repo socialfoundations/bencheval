@@ -2,7 +2,7 @@
 [![Documentation Status](https://readthedocs.org/projects/whynot/badge/?version=latest)]()
 
 <p align="center">
-<img src="assets/logo.jpg" height="400" width="600">
+<img src="https://github.com/socialfoundations/bencheval/blob/main/assets/logo.jpg" height="400" width="600">
 </p>
 
 **BenchEval** is a Python package that provides a suite of tools to evaluate multi-task benchmarks focusing on
@@ -51,7 +51,7 @@ Check the [documentation]() for more details.
 ## Reproduce the Paper
 
 <p align="center">
-<img src="assets/banner.png" height="400" width="600">
+<img src="https://github.com/socialfoundations/bencheval/blob/main/assets/banner.png" height="400" width="600">
 </p>
 
 Please check out [cardinal.ipynb](./cardinal.ipynb), [ordinal.ipynb](./ordinal.ipynb) and [banner.ipynb](./banner.ipynb)
