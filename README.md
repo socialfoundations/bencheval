@@ -1,5 +1,5 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?color=g&style=plastic)](https://opensource.org/licenses/MIT)
-[![Documentation Status](https://readthedocs.org/projects/whynot/badge/?version=latest)]()
+[![Documentation Status](https://readthedocs.org/projects/whynot/badge/?version=latest)](https://socialfoundations.github.io/bencheval)
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/socialfoundations/bencheval/main/assets/logo.jpg" height="400" width="600">
@@ -11,7 +11,7 @@ candidate models. This package facilitates comprehensive analysis of multi-task 
 exposing the fundamental trade-off between diversity and stability in both cardinal and ordinal benchmarks.
 
 For more information, including the motivations behind the measures and our empirical findings, please
-see [our paper]().
+see [our paper](https://github.com/socialfoundations/bencheval).
 
 ## Quick Start
 
@@ -46,7 +46,7 @@ sensitivity = get_sensitivity(data, cols)
 ```
 
 To use your own benchmark, you just need to provide a pandas DataFrame a list of columns indicating the tasks.
-Check the [documentation]() for more details.
+Check the [documentation](https://socialfoundations.github.io/bencheval) for more details.
 
 ## Reproduce the Paper
 
@@ -54,6 +54,6 @@ Check the [documentation]() for more details.
 <img src="https://raw.githubusercontent.com/socialfoundations/bencheval/main/assets/banner.png" height="400" width="600">
 </p>
 
-Please check out [cardinal.ipynb](./examples/cardinal.ipynb), [ordinal.ipynb](./examples/ordinal.ipynb) and [banner.ipynb](./examples/banner.ipynb)
+Please check out [cardinal.ipynb](https://github.com/socialfoundations/bencheval/blob/main/examples/cardinal.ipynb), [ordinal.ipynb](https://github.com/socialfoundations/bencheval/blob/main/examples/ordinal.ipynb) and [banner.ipynb](https://github.com/socialfoundations/bencheval/blob/main/examples/banner.ipynb)
 for
 reproducing our results.
