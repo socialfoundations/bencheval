@@ -22,14 +22,14 @@ def appr_rank_diff(new_win_rate, inv_indices, orig_rank, use_weighted_loss=False
     Returns:
         torch.Tensor: approximated loss
     """
-    ret = torch.zeros(1)
+    ret = 0.0
     for i, inv_i in enumerate(inv_indices):
         for j, inv_j in enumerate(inv_indices):
             # old_rank[i] is the original rank for inv_i
             if orig_rank[i] < orig_rank[j]:
                 if use_weighted_loss:
                     # this weight would encourage larger rank distance to get changed first
-                    ret += (orig_rank[j] - orig_rank[i]) * max(new_win_rate[inv_j] - new_win_rate[inv_i], 0.0)
+                    ret += (orig_rank[j] - orig_rank[i]) * max(new_win_rate[inv_j] - new_win_rate[inv_i], -0.01)
                 else:
                     ret += max(new_win_rate[inv_i] - new_win_rate[inv_j], -0.01)
     return ret
@@ -107,9 +107,9 @@ def get_sensitivity(data, cols, inv_indices=None, lr=0.01, num_step=1000, use_we
     for episode in range(num_step):
         new_win_rate, new_indices = get_selected_win_rate(win_rate_matrix, w, inv_indices)
         loss = appr_rank_diff(new_win_rate, inv_indices, orig_rank, use_weighted_loss)
-        print("Episode %d, loss %.2lf" % (episode, loss.item()), end="\r")
-        if loss.item() < 1e-8:
+        if type(loss) is float:
             break
+        print("Episode %d, loss %.2lf" % (episode, loss.item()), end="\r")
 
         optimizer.zero_grad()
         loss.backward()
