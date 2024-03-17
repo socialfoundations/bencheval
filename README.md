@@ -54,6 +54,6 @@ Check the [documentation]() for more details.
 <img src="https://raw.githubusercontent.com/socialfoundations/bencheval/main/assets/banner.png" height="400" width="600">
 </p>
 
-Please check out [cardinal.ipynb](./cardinal.ipynb), [ordinal.ipynb](./ordinal.ipynb) and [banner.ipynb](./banner.ipynb)
+Please check out [cardinal.ipynb](./examples/cardinal.ipynb), [ordinal.ipynb](./examples/ordinal.ipynb) and [banner.ipynb](./examples/banner.ipynb)
 for
 reproducing our results.
