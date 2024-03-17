@@ -33,8 +33,11 @@ dependencies = [
         "pandas",
         "joblib",
         "scikit-learn",
-        "zarth_utils @ git+https://github.com/ghzhang233/zarth_utils.git@v1.0#egg=zarth_utils"
 ]
+
+
+[tool.setuptools]
+include-package-data = true
 
 [tool.setuptools.packages.find]
 include = ["bencheval*"]
