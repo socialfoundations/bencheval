@@ -9,7 +9,7 @@ from ..utils.metric import get_rank_diff, get_rank_variance
 from ..utils.win_rate import WinningRate
 
 
-def appr_rank_diff(new_win_rate, inv_indices, orig_rank, use_weighted_loss=False):
+def appr_rank_diff(new_win_rate, inv_indices, orig_rank):
     """
     Approximate the rank difference between the original win rate and the new win rate.
 
@@ -17,7 +17,6 @@ def appr_rank_diff(new_win_rate, inv_indices, orig_rank, use_weighted_loss=False
         new_win_rate(np.array): win rate for all models
         inv_indices(list): invaraint indices
         orig_rank(np.array): original win rate for only models in inv_indices
-        use_weighted_loss(bool): whether use weighted approximation loss
 
     Returns:
         torch.Tensor: approximated loss
@@ -27,11 +26,7 @@ def appr_rank_diff(new_win_rate, inv_indices, orig_rank, use_weighted_loss=False
         for j, inv_j in enumerate(inv_indices):
             # old_rank[i] is the original rank for inv_i
             if orig_rank[i] < orig_rank[j]:
-                if use_weighted_loss:
-                    # this weight would encourage larger rank distance to get changed first
-                    ret += (orig_rank[j] - orig_rank[i]) * max(new_win_rate[inv_j] - new_win_rate[inv_i], -0.01)
-                else:
-                    ret += max(new_win_rate[inv_i] - new_win_rate[inv_j], -0.01)
+                ret += max(new_win_rate[inv_i] - new_win_rate[inv_j], -0.01)
     return ret
 
 
@@ -66,7 +61,7 @@ def get_selected_win_rate(win_rate_matrix, w, inv_indices, do_sample=True):
     return new_win_rate, new_indices
 
 
-def get_sensitivity(data, cols, inv_indices=None, lr=0.01, num_step=1000, use_weighted_loss=None, return_indices=False):
+def get_sensitivity(data, cols, inv_indices=None, lr=0.01, num_step=1000, return_indices=False):
     """
     Calculate the sensitivity for a given benchmark.
 
@@ -76,7 +71,6 @@ def get_sensitivity(data, cols, inv_indices=None, lr=0.01, num_step=1000, use_we
         inv_indices(list): indices for L, the rest will be used as L^C
         lr(float): learning rate for optimization
         num_step(int): number of steps for optimization
-        use_weighted_loss(bool): whether use weighted approximation loss, if None, use both and return the better one
         return_indices(bool): whether return the indices of selected irrelevant models
 
     Returns:
@@ -84,16 +78,6 @@ def get_sensitivity(data, cols, inv_indices=None, lr=0.01, num_step=1000, use_we
     """
     if inv_indices is None:
         inv_indices = np.arange(len(data) // 5)
-
-    if use_weighted_loss is None:
-        a = get_sensitivity(data, cols, inv_indices, lr, num_step,
-                            use_weighted_loss=True, return_indices=True)
-        b = get_sensitivity(data, cols, inv_indices, lr, num_step,
-                            use_weighted_loss=False, return_indices=True)
-        if return_indices:
-            return a if a[0] > b[0] else b
-        else:
-            return max(a[0], b[0])
 
     torch.manual_seed(0)
     win_rate_matrix = torch.tensor(WinningRate(data, cols).win_rate).float()
@@ -106,7 +90,7 @@ def get_sensitivity(data, cols, inv_indices=None, lr=0.01, num_step=1000, use_we
     history = []
     for episode in range(num_step):
         new_win_rate, new_indices = get_selected_win_rate(win_rate_matrix, w, inv_indices)
-        loss = appr_rank_diff(new_win_rate, inv_indices, orig_rank, use_weighted_loss)
+        loss = appr_rank_diff(new_win_rate, inv_indices, orig_rank)
         if type(loss) is float:
             break
         print("Episode %d, loss %.2lf" % (episode, loss.item()), end="\r")
