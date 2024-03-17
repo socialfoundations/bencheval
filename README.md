@@ -1,6 +1,3 @@
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?color=g&style=plastic)](https://opensource.org/licenses/MIT)
-[![Documentation Status](https://readthedocs.org/projects/whynot/badge/?version=latest)](https://socialfoundations.github.io/bencheval)
-
 <p align="center">
 <img src="https://raw.githubusercontent.com/socialfoundations/bencheval/main/assets/logo.jpg" height="400" width="600">
 </p>
