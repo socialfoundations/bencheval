@@ -37,4 +37,4 @@ dependencies = [
 ]
 
 [tool.setuptools.packages.find]
-where = ["bencheval"]
+include = ["bencheval*"]
