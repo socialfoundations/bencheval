@@ -54,6 +54,6 @@ Check the [documentation](https://socialfoundations.github.io/bencheval) for mor
 <img src="https://raw.githubusercontent.com/socialfoundations/bencheval/main/assets/banner.png" height="400" width="600">
 </p>
 
-Please check out [cardinal.ipynb](https://github.com/socialfoundations/bencheval/blob/main/examples/cardinal.ipynb), [ordinal.ipynb](https://github.com/socialfoundations/bencheval/blob/main/examples/ordinal.ipynb) and [banner.ipynb](https://github.com/socialfoundations/bencheval/blob/main/examples/banner.ipynb)
+Please check out [cardinal.ipynb](https://githubtocolab.com/socialfoundations/bencheval/blob/main/examples/cardinal.ipynb), [ordinal.ipynb](https://githubtocolab.com/socialfoundations/bencheval/blob/main/examples/ordinal.ipynb) and [banner.ipynb](https://githubtocolab.com/socialfoundations/bencheval/blob/main/examples/banner.ipynb)
 for
 reproducing our results.
