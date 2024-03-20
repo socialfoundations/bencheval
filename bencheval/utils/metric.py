@@ -74,6 +74,8 @@ def get_rank_diff(new_rank, old_rank=None):
         old_rank = np.arange(len(new_rank))
     else:
         old_rank = np.array(old_rank)
+    if np.sum(np.abs(new_rank - old_rank)) <= 1e-8:
+        return 0, 0
     tau = get_kendall_tau(new_rank, old_rank)[0]
     max_rank_change = np.max(np.fabs(new_rank - old_rank)) / (len(new_rank) - 1)
     return tau, max_rank_change

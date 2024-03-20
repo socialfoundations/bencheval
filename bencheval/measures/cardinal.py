@@ -62,6 +62,8 @@ def get_sensitivity(data, cols, min_value=0.01, lr=1.0, num_steps=1000, stop_thr
 
     data = data[cols].values
     data = torch.tensor(data)
+    data_std = data.std(0)
+    data = data[:, [i for i, _std in enumerate(data_std) if _std > 1e-8]]
     if normalize_data:
         data = data - data.mean(0)
         data = data / data.std(0)
@@ -69,7 +71,7 @@ def get_sensitivity(data, cols, min_value=0.01, lr=1.0, num_steps=1000, stop_thr
     old_score = data.mean(1).detach().numpy()
     old_rank = rankdata(-old_score, method="average")
 
-    weight = torch.ones(len(cols), requires_grad=True)
+    weight = torch.ones(data.shape[1], requires_grad=True)
 
     def normalize_func(w):
         w1 = torch.softmax(w, dim=0)
